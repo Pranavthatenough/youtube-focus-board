@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Focus Board</title>
+  <link rel="icon" href="../icons/icon32.png">
+  <link rel="stylesheet" href="../ui.css">
+  <link rel="stylesheet" href="board.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap mast-inner">
+      <div class="brand"><span class="logo" aria-hidden="true"></span><span>Focus Board</span></div>
+      <div class="mast-status" id="mastStatus"></div>
+      <a class="btn primary" href="https://www.youtube.com/" target="_blank" rel="noopener">Open YouTube</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="welcome" id="welcome" hidden>
+      <div>
+        <div class="eyebrow">Installed</div>
+        <h2>YouTube is now a place to study.</h2>
+        <ol class="steps">
+          <li><b>Shorts, recommendations and comments are hidden.</b> Switch any of them back on from the toolbar button.</li>
+          <li><b>Add lectures to your study list.</b> They always open without the gate, and remember where you stopped.</li>
+          <li><b>Take notes while you watch.</b> Each note is linked to the moment in the video. Click it to jump back.</li>
+          <li><b>Anything else asks “Why are you here?”</b> Type an honest reason to unlock YouTube for 60 minutes.</li>
+        </ol>
+      </div>
+      <button class="ghost" id="closeWelcome" aria-label="Close">Got it</button>
+    </section>
+
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Today on YouTube</div>
+        <div class="hero-num" id="heroTotal">0 min</div>
+        <div class="hero-sub" id="heroSub"></div>
+      </div>
+      <div class="week" id="week" aria-label="Last 7 days"></div>
+    </div>
+
+    <div class="grid">
+      <div class="col-main">
+        <section class="card" id="studyCard">
+          <div class="card-h">
+            <h2>Study list</h2>
+            <div class="tabs" role="tablist" id="studyTabs">
+              <button role="tab" data-filter="todo" aria-selected="true">To watch <span id="cTodo"></span></button>
+              <button role="tab" data-filter="done" aria-selected="false">Done <span id="cDone"></span></button>
+              <button role="tab" data-filter="all" aria-selected="false">All</button>
+            </div>
+          </div>
+          <form class="addrow" id="addForm" autocomplete="off">
+            <input class="field" id="addInput" placeholder="Paste a YouTube lecture link" aria-label="YouTube link">
+            <button class="btn primary" type="submit">Add to list</button>
+          </form>
+          <div class="msg" id="addMsg" role="status"></div>
+          <ol class="study" id="studyList"></ol>
+        </section>
+
+        <section class="card" id="notesCard">
+          <div class="card-h">
+            <h2>Notes</h2>
+            <input class="field search" id="noteSearch" type="search" placeholder="Search notes" aria-label="Search notes">
+          </div>
+          <div id="notesList"></div>
+        </section>
+      </div>
+
+      <aside class="col-side">
+        <section class="card">
+          <div class="card-h"><h2>Hide on YouTube</h2></div>
+          <label class="sw-row"><span><b>Shorts</b><small>Shorts links open as normal videos.</small></span><input type="checkbox" role="switch" data-key="hideShorts"></label>
+          <label class="sw-row"><span><b>Recommendations</b><small>Home feed, “Up next”, end screens, autoplay.</small></span><input type="checkbox" role="switch" data-key="hideRecs"></label>
+          <label class="sw-row"><span><b>Comments</b><small>Under every video.</small></span><input type="checkbox" role="switch" data-key="hideComments"></label>
+          <label class="sw-row"><span><b>“Why are you here?” gate</b><small>Unlocks YouTube for 60 minutes.</small></span><input type="checkbox" role="switch" data-key="gate"></label>
+          <div class="lock" id="lockBox"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-h"><h2>Why you came</h2></div>
+          <ul class="log" id="log"></ul>
+        </section>
+
+        <section class="card">
+          <div class="card-h"><h2>Your data</h2></div>
+          <p class="note-p">Everything is saved in Chrome on this computer. Nothing is sent anywhere. Make a backup file to move it to another computer.</p>
+          <div class="data-actions">
+            <button class="btn" id="exportBtn">Download backup</button>
+            <label class="btn" for="importFile">Load backup</label>
+            <input type="file" id="importFile" accept="application/json,.json" hidden>
+          </div>
+          <div class="msg" id="dataMsg" role="status"></div>
+          <button class="linkbtn danger" id="resetBtn">Delete all Focus Board data</button>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="page-foot">YouTube Focus Board · works offline · <kbd>Alt</kbd> + <kbd>N</kbd> on a video to write a note</footer>
+  </main>
+
+  <script src="../shared.js"></script>
+  <script src="board.js"></script>
+</body>
+</html>

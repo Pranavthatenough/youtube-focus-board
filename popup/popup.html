@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Focus Board</title>
+  <link rel="stylesheet" href="../ui.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="logo" aria-hidden="true"></span><span>Focus Board</span></div>
+    <button class="ghost" id="openBoard">Open board →</button>
+  </header>
+
+  <section class="today">
+    <div class="eyebrow">YouTube today</div>
+    <div class="big" id="todayTotal">0 min</div>
+    <div class="split"><span class="sw study"></span><span id="todayStudy">0 min studying</span> <span class="sw other"></span><span id="todayOther">0 min other</span></div>
+    <div class="chart" id="chart" aria-label="Time on YouTube, last 7 days"></div>
+  </section>
+
+  <section class="gate" id="gateBox"></section>
+
+  <section class="switches">
+    <div class="eyebrow">Hide on YouTube</div>
+    <label class="sw-row"><span><b>Shorts</b><small>Shelves, tabs and the sidebar link. Shorts links open as normal videos.</small></span><input type="checkbox" role="switch" data-key="hideShorts"></label>
+    <label class="sw-row"><span><b>Recommendations</b><small>Home feed, "Up next", end screens and autoplay.</small></span><input type="checkbox" role="switch" data-key="hideRecs"></label>
+    <label class="sw-row"><span><b>Comments</b><small>Under every video.</small></span><input type="checkbox" role="switch" data-key="hideComments"></label>
+    <label class="sw-row"><span><b>"Why are you here?" gate</b><small>Type a reason to unlock YouTube for 60 min.</small></span><input type="checkbox" role="switch" data-key="gate"></label>
+  </section>
+
+  <footer class="foot">Changes apply instantly. Nothing leaves this computer.</footer>
+
+  <script src="../shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

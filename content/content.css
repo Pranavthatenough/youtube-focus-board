@@ -1,0 +1,69 @@
+/*
+ * YouTube Focus Board — hiding rules.
+ * Injected before YouTube draws anything, so hidden parts never flash on screen.
+ * Each part is hidden unless <html> carries a data-yfb-show-* attribute
+ * (the content script adds it when you switch that part back on).
+ * Because these are CSS rules, they keep working as YouTube swaps videos without a reload.
+ */
+
+/* ---------------- Shorts ---------------- */
+html:not([data-yfb-show-shorts]) ytd-reel-shelf-renderer,
+html:not([data-yfb-show-shorts]) ytd-rich-shelf-renderer[is-shorts],
+html:not([data-yfb-show-shorts]) ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+html:not([data-yfb-show-shorts]) ytd-rich-section-renderer:has(ytm-shorts-lockup-view-model),
+html:not([data-yfb-show-shorts]) ytd-rich-section-renderer:has(ytm-shorts-lockup-view-model-v2),
+html:not([data-yfb-show-shorts]) grid-shelf-view-model:has(ytm-shorts-lockup-view-model),
+html:not([data-yfb-show-shorts]) grid-shelf-view-model:has(ytm-shorts-lockup-view-model-v2),
+html:not([data-yfb-show-shorts]) ytd-item-section-renderer:has(> #contents > ytd-reel-shelf-renderer),
+html:not([data-yfb-show-shorts]) ytm-shorts-lockup-view-model,
+html:not([data-yfb-show-shorts]) ytm-shorts-lockup-view-model-v2,
+html:not([data-yfb-show-shorts]) ytd-video-renderer:has(a[href^="/shorts/"]),
+html:not([data-yfb-show-shorts]) ytd-rich-item-renderer:has(a[href^="/shorts/"]),
+html:not([data-yfb-show-shorts]) ytd-grid-video-renderer:has(a[href^="/shorts/"]),
+html:not([data-yfb-show-shorts]) ytd-compact-video-renderer:has(a[href^="/shorts/"]),
+html:not([data-yfb-show-shorts]) ytd-guide-entry-renderer:has(a[title="Shorts"]),
+html:not([data-yfb-show-shorts]) ytd-mini-guide-entry-renderer[aria-label="Shorts"],
+html:not([data-yfb-show-shorts]) yt-tab-shape[tab-title="Shorts"],
+html:not([data-yfb-show-shorts]) tp-yt-paper-tab:has(> .tab-content[title="Shorts"]) {
+  display: none !important;
+}
+
+/* ---------------- Recommendations ---------------- */
+/* home feed and its topic chips */
+html:not([data-yfb-show-recs]) ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
+html:not([data-yfb-show-recs]) ytd-browse[page-subtype="home"] #chips-wrapper,
+html:not([data-yfb-show-recs]) ytd-browse[page-subtype="home"] ytd-feed-filter-chip-bar-renderer,
+/* "Up next" column and its narrow-window version under the video */
+html:not([data-yfb-show-recs]) ytd-watch-flexy #related,
+html:not([data-yfb-show-recs]) ytd-watch-next-secondary-results-renderer,
+/* end screen cards, the video wall and "more videos" when paused */
+html:not([data-yfb-show-recs]) .ytp-endscreen-content,
+html:not([data-yfb-show-recs]) .videowall-endscreen,
+html:not([data-yfb-show-recs]) .ytp-ce-element,
+html:not([data-yfb-show-recs]) .ytp-autonav-endscreen,
+html:not([data-yfb-show-recs]) .ytp-pause-overlay,
+html:not([data-yfb-show-recs]) .ytp-suggested-action,
+html:not([data-yfb-show-recs]) .ytp-fullscreen-grid-stills-container,
+html:not([data-yfb-show-recs]) .ytp-fullerscreen-edu-button {
+  display: none !important;
+}
+
+/* ---------------- Comments ---------------- */
+html:not([data-yfb-show-comments]) ytd-comments#comments,
+html:not([data-yfb-show-comments]) ytd-item-section-renderer[section-identifier="comment-item-section"],
+html:not([data-yfb-show-comments]) ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-comments-section"],
+html:not([data-yfb-show-comments]) ytd-comments-entry-point-header-renderer {
+  display: none !important;
+}
+
+/* Our own panel host: give it room inside YouTube's right column */
+#yfb-panel-host {
+  display: block;
+  margin: 0 0 16px;
+}
+#yfb-home-host {
+  display: block;
+  margin: 24px auto 0;
+  max-width: 760px;
+  width: calc(100% - 32px);
+}
